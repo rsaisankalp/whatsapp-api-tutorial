@@ -132,6 +132,7 @@ const createSession = function(id, description) {
   });
 
   // Tambahkan client ke sessions
+  console.log("create sessions: "+id+" "+client.toString()+ " "+ JSON.stringify(client.toString()))
   sessions.push({
     id: id,
     description: description,
@@ -481,7 +482,7 @@ app.post('/send-group-message-media', [
       return response.data.toString('base64');
     });
   //}
-  console.log("attachment: "+attachment)
+  //console.log("attachment: "+attachment)
 
   const media = new MessageMedia(mimetype, attachment, 'Media');
 
