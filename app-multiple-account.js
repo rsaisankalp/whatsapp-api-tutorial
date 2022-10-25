@@ -470,9 +470,9 @@ app.post('/send-group-message-media', [
   // const media = new MessageMedia(file.mimetype, file.data.toString('base64'), file.name);
   let attachment = null;
   let mimetype;
-  if(mediaStore[fileUrl] != null) {
-    attachment = mediaStore[fileUrl]
-  } else {
+  // if(mediaStore[fileUrl] != null) {
+  //   attachment = mediaStore[fileUrl]
+  // } else {
     
     attachment = await axios.get(fileUrl, {
       responseType: 'arraybuffer'
@@ -480,7 +480,7 @@ app.post('/send-group-message-media', [
       mimetype = response.headers['content-type'];
       return response.data.toString('base64');
     });
-  }
+  //}
   console.log("attachment: "+attachment)
 
   const media = new MessageMedia(mimetype, attachment, 'Media');
