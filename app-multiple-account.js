@@ -454,7 +454,7 @@ app.post('/send-group-message-media', [
   let chatId = req.body.id;
   const sender = req.body.sender;
   const groupName = req.body.name;
-  try {
+  //try {
   const client = sessions.find(sess => sess.id == sender)?.client;
 
   // Make sure the sender is exists & ready
@@ -469,10 +469,11 @@ app.post('/send-group-message-media', [
   // const file = req.files.file;
   // const media = new MessageMedia(file.mimetype, file.data.toString('base64'), file.name);
   let attachment = null;
+  let mimetype;
   if(mediaStore[fileUrl] != null) {
     attachment = mediaStore[fileUrl]
   } else {
-    let mimetype;
+    
     attachment = await axios.get(fileUrl, {
       responseType: 'arraybuffer'
     }).then(response => {
@@ -511,12 +512,13 @@ app.post('/send-group-message-media', [
       response: err
     });
   });
-} catch(e) {
-  res.status(500).json({
-    status: false,
-    response: "failed"
-  });
-}
+// } 
+// catch(e) {
+//   res.status(500).json({
+//     status: false,
+//     response: JSON.stringify(e)
+//   });
+// }
   
 
 
